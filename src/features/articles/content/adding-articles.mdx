@@ -1,0 +1,22 @@
+# How to Add an Article
+
+This page is itself an MDX file. Adding a new article is two steps:
+
+1. Create `src/features/articles/content/<your-slug>.mdx`.
+2. Add a matching entry to the `ARTICLES` array in
+   `src/features/articles/articles.ts`.
+
+That's it — the registry lazy-loads every `.mdx` file in `content/`, so the new
+article appears on the Articles index and gets its own route automatically.
+
+## What you can write
+
+MDX is markdown plus React. You get the usual headings, **bold**, lists, and
+tables, but you can also import and embed components inline — for example, a
+live widget could sit between paragraphs.
+
+- Bullet lists
+- `inline code`
+- [Links to other pages](/articles)
+
+Replace this file with your own content, or delete it once you're set up.
