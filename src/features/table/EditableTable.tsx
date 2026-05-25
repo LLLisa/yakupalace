@@ -39,7 +39,8 @@ export function EditableTable() {
         className="text-xl font-semibold w-full rounded border border-slate-300 px-3 py-2"
       />
 
-      <div className="overflow-x-auto">
+      {/* Edge-to-edge horizontal scroll on mobile for wide tables. */}
+      <div className="overflow-x-auto -mx-4 px-4">
         <table className="border-collapse">
           <thead>
             <tr>
@@ -48,7 +49,7 @@ export function EditableTable() {
                   <input
                     value={h}
                     onChange={(e) => setHeader(c, e.target.value)}
-                    className="bg-slate-100 font-semibold px-3 py-2 w-40"
+                    className="bg-slate-100 font-semibold px-3 py-2.5 w-40 text-base"
                   />
                 </th>
               ))}
@@ -62,7 +63,7 @@ export function EditableTable() {
                     <input
                       value={cell}
                       onChange={(e) => setCell(r, c, e.target.value)}
-                      className="px-3 py-2 w-40"
+                      className="px-3 py-2.5 w-40 text-base"
                     />
                   </td>
                 ))}
@@ -72,25 +73,25 @@ export function EditableTable() {
         </table>
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <button
           type="button"
           onClick={addRow}
-          className="rounded border border-slate-300 bg-white px-3 py-2 text-sm hover:bg-slate-50"
+          className="rounded border border-slate-300 bg-white px-4 min-h-11 text-sm hover:bg-slate-50 w-full sm:w-auto"
         >
           + Add row
         </button>
         <button
           type="button"
           onClick={addColumn}
-          className="rounded border border-slate-300 bg-white px-3 py-2 text-sm hover:bg-slate-50"
+          className="rounded border border-slate-300 bg-white px-4 min-h-11 text-sm hover:bg-slate-50 w-full sm:w-auto"
         >
           + Add column
         </button>
         <PDFDownloadLink
           document={<TableDocument title={title} headers={headers} rows={rows} />}
           fileName={`${title || 'table'}.pdf`}
-          className="rounded bg-brand text-brand-fg px-4 py-2 text-sm font-medium"
+          className="rounded bg-brand text-brand-fg px-4 min-h-11 flex items-center justify-center text-sm font-medium w-full sm:w-auto sm:ml-auto"
         >
           {({ loading }) => (loading ? 'Preparing…' : 'Download PDF')}
         </PDFDownloadLink>
