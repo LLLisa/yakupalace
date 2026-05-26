@@ -8,6 +8,13 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
+:root {
+  /* Visible viewport height. Defaults to dvh, then Layout overrides it with
+     window.innerHeight on mount/resize — Firefox for Android miscomputes dvh
+     and leaves a gap below the bottom navbar; innerHeight is reported right. */
+  --app-height: 100dvh;
+}
+
 html {
   scroll-behavior: smooth;
 }
