@@ -17,65 +17,66 @@ const items: NavItem[] = [
   { to: '/table', label: 'Table', Icon: TableIcon },
 ]
 
-/**
- * Responsive navigation.
- * - Mobile (default): a fixed bottom tab bar within thumb reach.
- * - Desktop (md+): a top header bar with inline links; the bottom bar hides.
- */
-export function NavBar() {
+/** Top app bar: brand always; inline links on desktop. */
+export function TopBar() {
   return (
-    <>
-      {/* Top app bar — brand always; links only on desktop. */}
-      <header className="sticky top-0 z-20 bg-brand text-brand-fg">
-        <div className="w-full max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-          <NavLink to="/" className="font-bold text-lg tracking-tight">
-            雀 Yaku Palace
-          </NavLink>
-          <ul className="hidden md:flex gap-2 text-sm">
-            {items.map(({ to, label, end }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  end={end}
-                  className={({ isActive }) =>
-                    `px-3 py-2 rounded-md transition-colors ${
-                      isActive ? 'bg-brand-fg/15' : 'hover:bg-brand-fg/10'
-                    }`
-                  }
-                >
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </header>
-
-      {/* Bottom tab bar — mobile only. */}
-      <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-20 border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]"
-        aria-label="Primary"
-      >
-        <ul className="flex">
-          {items.map(({ to, label, end, Icon }) => (
-            <li key={to} className="flex-1">
+    <header className="bg-brand text-brand-fg">
+      <div className="w-full max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+        <NavLink to="/" className="font-bold text-lg tracking-tight">
+          雀 Yaku Palace
+        </NavLink>
+        <ul className="hidden md:flex gap-2 text-sm">
+          {items.map(({ to, label, end }) => (
+            <li key={to}>
               <NavLink
                 to={to}
                 end={end}
                 className={({ isActive }) =>
-                  `flex flex-col items-center justify-center gap-0.5 py-2 text-xs min-h-14 transition-colors ${
-                    isActive ? 'text-brand' : 'text-slate-500'
+                  `px-3 py-2 rounded-md transition-colors ${
+                    isActive ? 'bg-brand-fg/15' : 'hover:bg-brand-fg/10'
                   }`
                 }
               >
-                <Icon className="w-6 h-6" aria-hidden="true" />
                 {label}
               </NavLink>
             </li>
           ))}
         </ul>
-      </nav>
-    </>
+      </div>
+    </header>
+  )
+}
+
+/**
+ * Bottom tab bar (mobile only). Rendered as the last row of the app-shell
+ * flex column — not `position: fixed` — so its height stays stable while the
+ * main area scrolls. The safe-area padding clears the home indicator.
+ */
+export function BottomTabs() {
+  return (
+    <nav
+      className="md:hidden border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]"
+      aria-label="Primary"
+    >
+      <ul className="flex">
+        {items.map(({ to, label, end, Icon }) => (
+          <li key={to} className="flex-1">
+            <NavLink
+              to={to}
+              end={end}
+              className={({ isActive }) =>
+                `flex flex-col items-center justify-center gap-0.5 py-2 text-xs min-h-14 transition-colors ${
+                  isActive ? 'text-brand' : 'text-slate-500'
+                }`
+              }
+            >
+              <Icon className="w-6 h-6" aria-hidden="true" />
+              {label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 

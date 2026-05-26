@@ -1,17 +1,22 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import { NavBar } from './NavBar'
+import { TopBar, BottomTabs } from './NavBar'
 
 export function Layout() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
-      <NavBar />
-      <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-6 md:py-8">
-        <Suspense fallback={<p className="text-slate-400">Loading…</p>}>
-          <Outlet />
-        </Suspense>
+    // App-shell: exactly the dynamic viewport height, and the page body itself
+    // doesn't scroll — only <main> does. This keeps the mobile browser toolbar
+    // (and the safe-area inset) stable, so the bottom tab bar can't jump.
+    <div className="h-dvh flex flex-col overflow-hidden bg-slate-50 text-slate-900 font-sans">
+      <TopBar />
+      <main className="flex-1 min-h-0 overflow-y-auto">
+        <div className="w-full max-w-5xl mx-auto px-4 py-6 md:py-8">
+          <Suspense fallback={<p className="text-slate-400">Loading…</p>}>
+            <Outlet />
+          </Suspense>
+        </div>
       </main>
-      {/* Extra bottom space on mobile so content clears the fixed tab bar. */}
+      <BottomTabs />
     </div>
   )
 }
