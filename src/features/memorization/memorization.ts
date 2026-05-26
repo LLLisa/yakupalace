@@ -14,6 +14,12 @@ export interface ArticleMeta {
  */
 export const ARTICLES: ArticleMeta[] = [
   {
+    slug: 'how-to-memorize',
+    title: 'How to Memorize Anything',
+    description: 'The keys to the Palace',
+    date: '2026-05-26'
+  },
+  {
     slug: 'what-is-riichi',
     title: 'What is Riichi Mahjong?',
     description: 'A one-page orientation to the four-player Japanese game.',
