@@ -33,7 +33,7 @@ export function HomePage() {
           <Link
             key={card.to}
             to={card.to}
-            className="block rounded-lg border border-border bg-card p-5 hover:border-brand hover:shadow-sm transition"
+            className="block rounded-lg border-2 border-border bg-card p-5 hover:border-brand hover:shadow-sm transition"
           >
             <h2 className="font-semibold text-lg">{card.title}</h2>
             <p className="mt-1 text-sm text-muted">{card.body}</p>

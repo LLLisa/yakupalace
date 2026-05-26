@@ -85,7 +85,7 @@ export function ScoreCalculator() {
 }
 
 const selectClass =
-  'w-full rounded border border-header px-3 min-h-11 text-base bg-card'
+  'w-full rounded border-2 border-header px-3 min-h-11 text-base bg-card'
 
 // Fu that don't change the score — shown greyed, but still selectable.
 function fuGreyed(han: number, fu: number) {
@@ -103,7 +103,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function ResultCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-header bg-card p-4">
+    <div className="rounded-lg border-2 border-header bg-card p-4">
       <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
         {title}
       </h2>

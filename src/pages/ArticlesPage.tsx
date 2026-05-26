@@ -10,7 +10,7 @@ export function ArticlesPage() {
           <li key={article.slug}>
             <Link
               to={`/articles/${article.slug}`}
-              className="block rounded-lg border border-border bg-card p-4 hover:border-brand transition"
+              className="block rounded-lg border-2 border-border bg-card p-4 hover:border-brand transition"
             >
               <div className="flex items-baseline justify-between gap-4">
                 <h2 className="font-semibold">{article.title}</h2>
