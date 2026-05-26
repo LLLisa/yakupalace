@@ -14,8 +14,8 @@ export function ArticlePage() {
     return (
       <div className="space-y-4">
         <p className="text-muted">That article doesn't exist.</p>
-        <Link to="/memorization" className="text-brand underline">
-          ← Back to Memorization
+        <Link to="/learn" className="text-brand underline">
+          ← Back to Learn Riichi Scoring
         </Link>
       </div>
     )
@@ -23,8 +23,8 @@ export function ArticlePage() {
 
   return (
     <article className="space-y-6">
-      <Link to="/memorization" className="text-sm text-brand underline">
-        ← All Memorization
+      <Link to="/learn" className="text-sm text-brand underline">
+        ← Learn Riichi Scoring
       </Link>
       {meta && (
         <time className="block text-xs text-faint" dateTime={meta.date}>

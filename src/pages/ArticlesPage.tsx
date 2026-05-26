@@ -4,12 +4,12 @@ import { ARTICLES } from '../features/memorization/memorization'
 export function ArticlesPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-center">Memorization</h1>
+      <h1 className="text-2xl font-bold text-center">Learn Riichi Scoring</h1>
       <ul className="space-y-3">
         {ARTICLES.map((article) => (
           <li key={article.slug}>
             <Link
-              to={`/memorization/${article.slug}`}
+              to={`/learn/${article.slug}`}
               className="block rounded-lg border-2 border-header bg-card p-4 hover:border-brand transition"
             >
               <div className="flex items-baseline justify-between gap-4">
