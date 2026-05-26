@@ -7,14 +7,14 @@ import {
 } from './scoring'
 
 export function ScoreCalculator() {
-  const [han, setHan] = useState(3)
+  const [han, setHan] = useState(1)
   const [fu, setFu] = useState(30)
 
   // Derived on every render — scores update live as the selects change.
   const score = scoreHand(han, fu)
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Han">
           <select
@@ -30,34 +30,36 @@ export function ScoreCalculator() {
           </select>
         </Field>
 
-        {/* Fu is only meaningful below a limit. At 5+ han the limit name
-            takes the same cell, but borderless and label-less so it reads as
-            a result, not an input. The row height is fixed by the Han field,
-            so swapping these does not shift the layout. */}
-        {score.limit ? (
-          // Blank label spacer + a min-h-11 box mirror the fu field exactly,
-          // so the name lands where the fu number sits — no vertical offset.
-          <Field label={' '}>
-            <div className="min-h-11 flex items-center px-3 text-2xl font-bold text-brand">
-              {LIMIT_LABELS[score.limit]}
-            </div>
-          </Field>
-        ) : (
-          <Field label="Fu">
-            <select
-              value={fu}
-              onChange={(e) => setFu(Number(e.target.value))}
-              className={selectClass}
-            >
-              {FU_OPTIONS.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt} fu
-                </option>
-              ))}
-            </select>
-          </Field>
-        )}
+        <Field label="Fu">
+          {/* Grey out (never disable) fu that don't affect the score, so the
+              user can still select anything: all fu at 5+ han, 80+ fu at 3
+              han, 50+ fu at 4 han. */}
+          <select
+            value={fu}
+            onChange={(e) => setFu(Number(e.target.value))}
+            className={`${selectClass} ${fuGreyed(han, fu) ? 'text-slate-400' : ''}`}
+          >
+            {FU_OPTIONS.map((opt) => (
+              <option
+                key={opt}
+                value={opt}
+                style={fuGreyed(han, opt) ? { color: '#94a3b8' } : undefined}
+              >
+                {opt} fu
+              </option>
+            ))}
+          </select>
+        </Field>
       </div>
+
+      {/* At 5+ han fu is ignored; the limit name shows beneath the inputs. */}
+      {score.limit && (
+        <div className="-my-3 flex items-center gap-3 text-brand">
+          <span className="h-px flex-1 bg-brand/30" />
+          <span className="text-2xl font-bold">{LIMIT_LABELS[score.limit]}</span>
+          <span className="h-px flex-1 bg-brand/30" />
+        </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <ResultCard title="Non-dealer (ko)">
@@ -82,9 +84,13 @@ export function ScoreCalculator() {
   )
 }
 
-// Shared so the fu select and the limit-name box are pixel-identical boxes.
 const selectClass =
   'w-full rounded border border-slate-300 px-3 min-h-11 text-base bg-white'
+
+// Fu that don't change the score — shown greyed, but still selectable.
+function fuGreyed(han: number, fu: number) {
+  return han >= 5 || (han === 4 && fu >= 50) || (han === 3 && fu >= 80)
+}
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

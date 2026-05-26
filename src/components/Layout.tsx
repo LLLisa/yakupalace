@@ -10,7 +10,7 @@ export function Layout() {
     <div className="h-dvh flex flex-col overflow-hidden bg-slate-50 text-slate-900 font-sans">
       <TopBar />
       <main className="flex-1 min-h-0 overflow-y-auto">
-        <div className="w-full max-w-5xl mx-auto px-4 py-6 md:py-8">
+        <div className="w-full max-w-5xl mx-auto px-4 pt-4 pb-6 md:pt-6 md:pb-8">
           <Suspense fallback={<p className="text-slate-400">Loading…</p>}>
             <Outlet />
           </Suspense>
