@@ -51,3 +51,8 @@ src/
 2. Add a matching entry to `ARTICLES` in `src/features/memorization/memorization.ts`.
 
 The article then appears on the index and gets its own route automatically.
+
+## Credits
+
+Favicon: [Mahjong icons created by Kason Koo — Flaticon](https://www.flaticon.com/free-icons/mahjong)
+(recolored to the site's teal and traced to SVG).
