@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components --
+   This module intentionally exports the router config, not a component. */
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from './components/Layout'
