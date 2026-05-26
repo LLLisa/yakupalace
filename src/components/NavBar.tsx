@@ -13,7 +13,7 @@ interface NavItem {
 const items: NavItem[] = [
   { to: '/', label: 'Home', end: true, Icon: HomeIcon },
   { to: '/calculator', label: 'Score', Icon: CalcIcon },
-  { to: '/memorization', label: 'Memorization', Icon: BookIcon },
+  { to: '/learn', label: 'Learn', Icon: BookIcon },
 ]
 
 /** Top app bar: brand always; inline links on desktop. */

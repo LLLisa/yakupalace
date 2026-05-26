@@ -7,8 +7,8 @@ const cards = [
     body: 'Work out the points for a finished hand.',
   },
   {
-    to: '/memorization',
-    title: 'Memorization',
+    to: '/learn',
+    title: 'Learn Riichi Scoring',
     body: 'Short reads about the game and these tools.',
   },
 ]
