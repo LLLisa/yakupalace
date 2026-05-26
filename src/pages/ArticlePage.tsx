@@ -13,7 +13,7 @@ export function ArticlePage() {
   if (!Article) {
     return (
       <div className="space-y-4">
-        <p className="text-slate-600">That article doesn't exist.</p>
+        <p className="text-muted">That article doesn't exist.</p>
         <Link to="/articles" className="text-brand underline">
           ← Back to articles
         </Link>
@@ -27,12 +27,12 @@ export function ArticlePage() {
         ← All articles
       </Link>
       {meta && (
-        <time className="block text-xs text-slate-400" dateTime={meta.date}>
+        <time className="block text-xs text-faint" dateTime={meta.date}>
           {meta.date}
         </time>
       )}
       <div className="prose-article max-w-prose">
-        <Suspense fallback={<p className="text-slate-400">Loading…</p>}>
+        <Suspense fallback={<p className="text-faint">Loading…</p>}>
           <Article />
         </Suspense>
       </div>

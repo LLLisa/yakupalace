@@ -36,7 +36,7 @@ export function EditableTable() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Table title"
-        className="text-xl font-semibold w-full rounded border border-slate-300 px-3 py-2"
+        className="text-xl font-semibold w-full rounded border border-border bg-card px-3 py-2"
       />
 
       {/* Edge-to-edge horizontal scroll on mobile for wide tables. */}
@@ -45,11 +45,11 @@ export function EditableTable() {
           <thead>
             <tr>
               {headers.map((h, c) => (
-                <th key={c} className="border border-slate-300 p-0">
+                <th key={c} className="border border-border p-0">
                   <input
                     value={h}
                     onChange={(e) => setHeader(c, e.target.value)}
-                    className="bg-slate-100 font-semibold px-3 py-2.5 w-40 text-base"
+                    className="bg-card-hover font-semibold px-3 py-2.5 w-40 text-base"
                   />
                 </th>
               ))}
@@ -59,11 +59,11 @@ export function EditableTable() {
             {rows.map((row, r) => (
               <tr key={r}>
                 {row.map((cell, c) => (
-                  <td key={c} className="border border-slate-300 p-0">
+                  <td key={c} className="border border-border p-0">
                     <input
                       value={cell}
                       onChange={(e) => setCell(r, c, e.target.value)}
-                      className="px-3 py-2.5 w-40 text-base"
+                      className="bg-card px-3 py-2.5 w-40 text-base"
                     />
                   </td>
                 ))}
@@ -77,14 +77,14 @@ export function EditableTable() {
         <button
           type="button"
           onClick={addRow}
-          className="rounded border border-slate-300 bg-white px-4 min-h-11 text-sm hover:bg-slate-50 w-full sm:w-auto"
+          className="rounded border border-border bg-card px-4 min-h-11 text-sm hover:bg-card-hover w-full sm:w-auto"
         >
           + Add row
         </button>
         <button
           type="button"
           onClick={addColumn}
-          className="rounded border border-slate-300 bg-white px-4 min-h-11 text-sm hover:bg-slate-50 w-full sm:w-auto"
+          className="rounded border border-border bg-card px-4 min-h-11 text-sm hover:bg-card-hover w-full sm:w-auto"
         >
           + Add column
         </button>

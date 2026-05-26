@@ -37,7 +37,7 @@ export function ScoreCalculator() {
           <select
             value={fu}
             onChange={(e) => setFu(Number(e.target.value))}
-            className={`${selectClass} ${fuGreyed(han, fu) ? 'text-slate-400' : ''}`}
+            className={`${selectClass} ${fuGreyed(han, fu) ? 'text-faint' : ''}`}
           >
             {FU_OPTIONS.map((opt) => (
               <option
@@ -54,10 +54,10 @@ export function ScoreCalculator() {
 
       {/* At 5+ han fu is ignored; the limit name shows beneath the inputs. */}
       {score.limit && (
-        <div className="-my-3 flex items-center gap-3 text-brand">
-          <span className="h-px flex-1 bg-brand/30" />
+        <div className="-my-3 flex items-center gap-3 text-ink">
+          <span className="h-px flex-1 bg-header" />
           <span className="text-2xl font-bold">{LIMIT_LABELS[score.limit]}</span>
-          <span className="h-px flex-1 bg-brand/30" />
+          <span className="h-px flex-1 bg-header" />
         </div>
       )}
 
@@ -85,7 +85,7 @@ export function ScoreCalculator() {
 }
 
 const selectClass =
-  'w-full rounded border border-slate-300 px-3 min-h-11 text-base bg-white'
+  'w-full rounded border border-header px-3 min-h-11 text-base bg-card'
 
 // Fu that don't change the score — shown greyed, but still selectable.
 function fuGreyed(han: number, fu: number) {
@@ -95,7 +95,7 @@ function fuGreyed(han: number, fu: number) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="block text-sm font-medium text-slate-700 mb-1">{label}</span>
+      <span className="block text-sm font-medium text-ink mb-1">{label}</span>
       {children}
     </label>
   )
@@ -103,8 +103,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function ResultCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4">
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+    <div className="rounded-lg border border-header bg-card p-4">
+      <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
         {title}
       </h2>
       <dl className="mt-3 space-y-3">{children}</dl>
@@ -115,10 +115,10 @@ function ResultCard({ title, children }: { title: string; children: React.ReactN
 function Row({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
     <div className="flex items-baseline justify-between gap-3">
-      <dt className="text-slate-600">{label}</dt>
+      <dt className="text-muted">{label}</dt>
       <dd className="text-right">
         <span className="text-xl font-semibold tabular-nums">{value}</span>
-        {note && <span className="block text-xs text-slate-400">{note}</span>}
+        {note && <span className="block text-xs text-faint">{note}</span>}
       </dd>
     </div>
   )
