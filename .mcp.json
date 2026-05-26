@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "yakupalace": {
+      "command": "mcp/node_modules/.bin/tsx",
+      "args": ["mcp/src/index.ts"],
+      "env": {
+        "SITE_URL": "https://yakupalace.com"
+      }
+    }
+  }
+}
