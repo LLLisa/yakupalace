@@ -20,7 +20,7 @@ const items: NavItem[] = [
 /** Top app bar: brand always; inline links on desktop. */
 export function TopBar() {
   return (
-    <header className="bg-brand text-brand-fg">
+    <header className="bg-header text-header-fg">
       <div className="w-full max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
         <NavLink to="/" className="font-bold text-lg tracking-tight">
           雀 Yaku Palace
@@ -33,7 +33,7 @@ export function TopBar() {
                 end={end}
                 className={({ isActive }) =>
                   `px-3 py-2 rounded-md transition-colors ${
-                    isActive ? 'bg-brand-fg/15' : 'hover:bg-brand-fg/10'
+                    isActive ? 'bg-header-fg/15' : 'hover:bg-header-fg/10'
                   }`
                 }
               >
@@ -58,7 +58,7 @@ export function TopBar() {
 export function BottomTabs() {
   return (
     <nav
-      className="md:hidden border-t border-slate-200 bg-white pb-[min(env(safe-area-inset-bottom),0.75rem)]"
+      className="md:hidden border-t border-border bg-card pb-[min(env(safe-area-inset-bottom),0.75rem)]"
       aria-label="Primary"
     >
       <ul className="flex">
@@ -69,7 +69,7 @@ export function BottomTabs() {
               end={end}
               className={({ isActive }) =>
                 `flex flex-col items-center justify-center gap-0.5 py-2 text-xs min-h-14 transition-colors ${
-                  isActive ? 'text-brand' : 'text-slate-500'
+                  isActive ? 'text-brand' : 'text-muted'
                 }`
               }
             >

@@ -10,15 +10,15 @@ export function ArticlesPage() {
           <li key={article.slug}>
             <Link
               to={`/articles/${article.slug}`}
-              className="block rounded-lg border border-slate-200 bg-white p-4 hover:border-brand transition"
+              className="block rounded-lg border border-border bg-card p-4 hover:border-brand transition"
             >
               <div className="flex items-baseline justify-between gap-4">
                 <h2 className="font-semibold">{article.title}</h2>
-                <time className="text-xs text-slate-400" dateTime={article.date}>
+                <time className="text-xs text-faint" dateTime={article.date}>
                   {article.date}
                 </time>
               </div>
-              <p className="mt-1 text-sm text-slate-600">{article.description}</p>
+              <p className="mt-1 text-sm text-muted">{article.description}</p>
             </Link>
           </li>
         ))}
