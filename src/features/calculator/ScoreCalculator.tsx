@@ -32,12 +32,14 @@ export function ScoreCalculator() {
 
         <Field label="Fu">
           {/* Grey out (never disable) fu that don't affect the score, so the
-              user can still select anything: all fu at 5+ han, 80+ fu at 3
-              han, 50+ fu at 4 han. */}
+              user can still select anything: all fu at 5+ han, 70+ fu at 3
+              han, 40+ fu at 4 han. */}
           <select
             value={fu}
             onChange={(e) => setFu(Number(e.target.value))}
-            className={`${selectClass} ${fuGreyed(han, fu) ? 'text-faint' : ''}`}
+            className={`${selectClass} transition-opacity ${
+              fuGreyed(han, fu) ? 'opacity-40' : ''
+            }`}
           >
             {FU_OPTIONS.map((opt) => (
               <option
@@ -89,7 +91,7 @@ const selectClass =
 
 // Fu that don't change the score — shown greyed, but still selectable.
 function fuGreyed(han: number, fu: number) {
-  return han >= 5 || (han === 4 && fu >= 50) || (han === 3 && fu >= 80)
+  return han >= 5 || (han === 4 && fu >= 40) || (han === 3 && fu >= 70)
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
