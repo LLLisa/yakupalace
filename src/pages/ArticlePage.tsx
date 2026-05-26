@@ -33,6 +33,9 @@ export function ArticlePage() {
       )}
       <div className="prose-article max-w-prose">
         <Suspense fallback={<p className="text-faint">Loading…</p>}>
+          {/* Article is a stable module-level lazy() component looked up by
+              slug (see articles.ts), not created during render. */}
+          {/* eslint-disable-next-line react-hooks/static-components */}
           <Article />
         </Suspense>
       </div>
