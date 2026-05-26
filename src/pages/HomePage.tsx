@@ -7,14 +7,9 @@ const cards = [
     body: 'Work out the points for a finished hand.',
   },
   {
-    to: '/articles',
-    title: 'Articles',
+    to: '/memorization',
+    title: 'Memorization',
     body: 'Short reads about the game and these tools.',
-  },
-  {
-    to: '/table',
-    title: 'Table builder',
-    body: 'Fill in your own table and export it as a PDF.',
   },
 ]
 
@@ -28,12 +23,12 @@ export function HomePage() {
         </p>
       </section>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4">
         {cards.map((card) => (
           <Link
             key={card.to}
             to={card.to}
-            className="block rounded-lg border-2 border-border bg-card p-5 hover:border-brand hover:shadow-sm transition"
+            className="block rounded-lg border-2 border-header bg-card p-5 hover:border-brand hover:shadow-sm transition"
           >
             <h2 className="font-semibold text-lg">{card.title}</h2>
             <p className="mt-1 text-sm text-muted">{card.body}</p>

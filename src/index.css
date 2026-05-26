@@ -98,7 +98,7 @@ textarea::placeholder {
 }
 .prose-article th,
 .prose-article td {
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-header);
   padding: 0.4rem 0.7rem;
 }
 </content>

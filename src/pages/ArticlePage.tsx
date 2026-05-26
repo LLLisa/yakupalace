@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import {
   getArticleComponent,
   getArticleMeta,
-} from '../features/articles/articles'
+} from '../features/memorization/memorization'
 
 export function ArticlePage() {
   const { slug = '' } = useParams()
@@ -14,8 +14,8 @@ export function ArticlePage() {
     return (
       <div className="space-y-4">
         <p className="text-muted">That article doesn't exist.</p>
-        <Link to="/articles" className="text-brand underline">
-          ← Back to articles
+        <Link to="/memorization" className="text-brand underline">
+          ← Back to Memorization
         </Link>
       </div>
     )
@@ -23,8 +23,8 @@ export function ArticlePage() {
 
   return (
     <article className="space-y-6">
-      <Link to="/articles" className="text-sm text-brand underline">
-        ← All articles
+      <Link to="/memorization" className="text-sm text-brand underline">
+        ← All Memorization
       </Link>
       {meta && (
         <time className="block text-xs text-faint" dateTime={meta.date}>

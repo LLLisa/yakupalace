@@ -8,7 +8,7 @@ browser — no backend.
 | Feature              | Status      | Where                                    |
 | -------------------- | ----------- | ---------------------------------------- |
 | Scoring calculator   | Placeholder | `src/pages/CalculatorPage.tsx`           |
-| Articles (MDX)       | Scaffolded  | `src/features/articles/`                 |
+| Memorization (MDX)   | Scaffolded  | `src/features/memorization/`             |
 | Table builder → PDF  | Skeleton    | `src/features/table/`                    |
 
 The calculator page is an intentional placeholder — drop your scoring UI and
@@ -18,7 +18,7 @@ logic into a `src/features/calculator/` module and render it on that page.
 
 - **Vite** + **React 19** + **TypeScript**
 - **React Router** for client-side routing
-- **MDX** for articles (write `.mdx` in `src/features/articles/content/`)
+- **MDX** for memorization pages (write `.mdx` in `src/features/memorization/content/`)
 - **Tailwind CSS v4** for styling
 - **@react-pdf/renderer** for PDF export
 
@@ -39,7 +39,7 @@ src/
   components/   shared layout + nav
   pages/        one component per route
   features/
-    articles/   MDX content + registry
+    memorization/ MDX content + registry
     table/       editable table + PDF document
   router.tsx    route definitions
   index.css     Tailwind entry + theme tokens
@@ -47,7 +47,7 @@ src/
 
 ## Adding an article
 
-1. Create `src/features/articles/content/<slug>.mdx`.
-2. Add a matching entry to `ARTICLES` in `src/features/articles/articles.ts`.
+1. Create `src/features/memorization/content/<slug>.mdx`.
+2. Add a matching entry to `ARTICLES` in `src/features/memorization/memorization.ts`.
 
 The article then appears on the index and gets its own route automatically.
