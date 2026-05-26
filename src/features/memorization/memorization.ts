@@ -25,6 +25,12 @@ export const ARTICLES: ArticleMeta[] = [
     description: 'A template showing the MDX authoring workflow for this site.',
     date: '2026-05-25',
   },
+  {
+    slug: 'table-builder',
+    title: 'Table builder',
+    description: 'Fill in your own values, then export the table as a PDF.',
+    date: '2026-05-26',
+  },
 ]
 
 // Eagerly map every MDX file to a lazy-loaded component, keyed by slug.

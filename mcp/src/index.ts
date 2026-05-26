@@ -21,7 +21,7 @@ import { scoreHand } from '../../src/features/calculator/scoring.ts'
 
 const SITE_URL = (process.env.SITE_URL ?? 'https://yakupalace.com').replace(/\/$/, '')
 const HERE = dirname(fileURLToPath(import.meta.url))
-const CONTENT_DIR = join(HERE, '..', '..', 'src', 'features', 'articles', 'content')
+const CONTENT_DIR = join(HERE, '..', '..', 'src', 'features', 'memorization', 'content')
 const MAX_BODY = 20_000
 
 const server = new McpServer({ name: 'yakupalace', version: '0.1.0' })

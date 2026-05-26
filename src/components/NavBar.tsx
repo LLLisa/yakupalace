@@ -13,8 +13,7 @@ interface NavItem {
 const items: NavItem[] = [
   { to: '/', label: 'Home', end: true, Icon: HomeIcon },
   { to: '/calculator', label: 'Score', Icon: CalcIcon },
-  { to: '/articles', label: 'Articles', Icon: BookIcon },
-  { to: '/table', label: 'Table', Icon: TableIcon },
+  { to: '/memorization', label: 'Memorization', Icon: BookIcon },
 ]
 
 /** Top app bar: brand always; inline links on desktop. */
@@ -108,15 +107,6 @@ function BookIcon(props: IconProps) {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z" />
       <path d="M4 19h14" />
-    </svg>
-  )
-}
-
-function TableIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="4" width="18" height="16" rx="2" />
-      <path d="M3 10h18M9 4v16" />
     </svg>
   )
 }
