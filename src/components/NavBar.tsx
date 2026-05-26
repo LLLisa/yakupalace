@@ -50,12 +50,15 @@ export function TopBar() {
 /**
  * Bottom tab bar (mobile only). Rendered as the last row of the app-shell
  * flex column — not `position: fixed` — so its height stays stable while the
- * main area scrolls. The safe-area padding clears the home indicator.
+ * main area scrolls. The safe-area padding clears the iOS home indicator,
+ * but is capped at 0.75rem — Firefox for Android reports a large
+ * safe-area-inset-bottom (for its own toolbar), which otherwise left a big
+ * dead gap that Chrome doesn't have.
  */
 export function BottomTabs() {
   return (
     <nav
-      className="md:hidden border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]"
+      className="md:hidden border-t border-slate-200 bg-white pb-[min(env(safe-area-inset-bottom),0.75rem)]"
       aria-label="Primary"
     >
       <ul className="flex">
