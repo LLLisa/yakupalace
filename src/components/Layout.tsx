@@ -12,9 +12,6 @@ export function Layout() {
         </Suspense>
       </main>
       {/* Extra bottom space on mobile so content clears the fixed tab bar. */}
-      <footer className="border-t border-slate-200 py-6 mb-16 md:mb-0 text-center text-sm text-slate-500">
-        Yaku Palace — a frontend-only riichi toolkit.
-      </footer>
     </div>
   )
 }

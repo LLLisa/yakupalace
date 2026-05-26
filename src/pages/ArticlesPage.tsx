@@ -4,7 +4,7 @@ import { ARTICLES } from '../features/articles/articles'
 export function ArticlesPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Articles</h1>
+      <h1 className="text-2xl font-bold text-center">Articles</h1>
       <ul className="space-y-3">
         {ARTICLES.map((article) => (
           <li key={article.slug}>

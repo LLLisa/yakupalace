@@ -21,11 +21,10 @@ const cards = [
 export function HomePage() {
   return (
     <div className="space-y-8">
-      <section>
+      <section className="text-center">
         <h1 className="text-3xl font-bold">Yaku Palace</h1>
-        <p className="mt-2 text-slate-600 max-w-prose">
-          A lightweight, frontend-only riichi toolkit. Everything runs in your
-          browser — no account, no server.
+        <p className="mt-2 text-slate-600 max-w-prose mx-auto">
+          A system for memorizing riichi mahjong yaku and scoring
         </p>
       </section>
 
