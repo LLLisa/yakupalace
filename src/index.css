@@ -108,4 +108,24 @@ textarea::placeholder {
   margin: 1rem auto;
   border-radius: 0.25rem;
 }
+
+/* Briefly flash a teal tint behind an entry the app has just navigated to, so
+   the eye lands on it. The class is toggled by ScrollToHash in ArticlePage;
+   only background-color animates, so there's no layout shift. */
+@keyframes flash-highlight {
+  0% {
+    background-color: color-mix(in srgb, var(--color-brand) 35%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+.flash-highlight {
+  animation: flash-highlight 1.3s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flash-highlight {
+    animation: none;
+  }
+}
 </content>
