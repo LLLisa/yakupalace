@@ -101,4 +101,11 @@ textarea::placeholder {
   border: 2px solid var(--color-header);
   padding: 0.4rem 0.7rem;
 }
+.prose-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 0.25rem;
+}
 </content>

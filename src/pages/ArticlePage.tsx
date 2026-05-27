@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import {
   getArticleComponent,
   getArticleMeta,
-} from '../features/memorization/memorization'
+} from '../features/memorization/articles'
 
 export function ArticlePage() {
   const { slug = '' } = useParams()

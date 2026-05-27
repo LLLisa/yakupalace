@@ -20,6 +20,12 @@ export const ARTICLES: ArticleMeta[] = [
     date: '2026-05-26'
   },
   {
+    slug: 'memorize-yaku',
+    title: 'How I Memorized Yaku',
+    description: 'My Yaku Memory Palace',
+    date: '2026-05-26'
+  },
+  {
     slug: 'what-is-riichi',
     title: 'What is Riichi Mahjong?',
     description: 'A one-page orientation to the four-player Japanese game.',

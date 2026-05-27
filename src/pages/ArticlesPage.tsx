@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ARTICLES } from '../features/memorization/memorization'
+import { ARTICLES } from '../features/memorization/articles'
 
 export function ArticlesPage() {
   return (
