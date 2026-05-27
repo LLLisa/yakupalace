@@ -128,4 +128,70 @@ textarea::placeholder {
     animation: none;
   }
 }
+
+/* Yakuman celebration: tiles fan out from the limit banner, then gravity
+   pulls them down as they fade. Direction/spin/timing are set per-tile inline
+   (see YakumanBurst in ScoreCalculator). */
+@keyframes tile-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)))
+      scale(1) rotate(var(--rot));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+        calc(-50% + var(--tx) * 1.1),
+        calc(-50% + var(--ty) + 340px)
+      )
+      scale(0.85) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+.yakuman-tile {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 29px;
+  margin: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  animation-name: tile-fly;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .yakuman-tile {
+    display: none;
+  }
+}
+
+/* Continuously cycle the "Yakuman" label through the spectrum: a saturated
+   base color spun all the way around the hue wheel, forever. */
+@keyframes rainbow-hue {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+.rainbow-text {
+  color: #ff4d4d;
+  /* Fuzzy glow in the current color; the hue-rotate filter spins the text and
+     this halo together. */
+  text-shadow:
+    0 0 1px currentColor,
+    0 0 3px currentColor;
+  animation: rainbow-hue 1.5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-text {
+    animation: none;
+  }
+}
 </content>
