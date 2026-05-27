@@ -18,13 +18,13 @@
 		<symbol id="s3" viewBox="0 0 320 446">
 			<use xlink:href="#tile"/>
 			<g transform="translate(48.737,388.448)">
-				<use xlink:href="#sou_p1" style="fill: #000000"/>
+				<use xlink:href="#sou_p1" style="fill: #003800"/>
 			</g>
 			<g transform="translate(218.776,388.014)">
-				<use xlink:href="#sou_p1" style="fill: #000000"/>
+				<use xlink:href="#sou_p1" style="fill: #003800"/>
 			</g>
 			<g transform="translate(133.757,210.159)">
-				<use xlink:href="#sou_p1" style="fill: #000000"/>
+				<use xlink:href="#sou_p1" style="fill: #003800"/>
 			</g>
 		</symbol>
 	</defs>

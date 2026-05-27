@@ -19,10 +19,10 @@
 			<use xlink:href="#tile"/>
 			<g id="sou6_p">
 				<g transform="translate(133.757,211.866)">
-					<use xlink:href="#sou_p1" style="fill: #000000"/>
+					<use xlink:href="#sou_p1" style="fill: #003800"/>
 				</g>
 				<g transform="translate(133.757,388.320)">
-					<use xlink:href="#sou_p1" style="fill: #000000"/>
+					<use xlink:href="#sou_p1" style="fill: #003800"/>
 				</g>
 			</g>
 			<g transform="translate(-88.545,0)">

@@ -17,10 +17,10 @@
 		</g>
 		<g id="sou2_p">
 			<g transform="translate(132.091,212.649)">
-				<use xlink:href="#sou_p1" style="fill: #000000"/>
+				<use xlink:href="#sou_p1" style="fill: #003800"/>
 			</g>
 			<g transform="translate(132.091,388.474)">
-				<use xlink:href="#sou_p1" style="fill: #000000"/>
+				<use xlink:href="#sou_p1" style="fill: #003800"/>
 			</g>
 		</g>
 		<symbol id="s2" viewBox="0 0 320 446">
