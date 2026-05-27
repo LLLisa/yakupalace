@@ -24,7 +24,10 @@ export function ScoreCalculator() {
   }, [score.limit])
 
   return (
-    <div className="flex flex-col gap-6">
+    // overflow-x-clip contains the yakuman tile burst (tiles fan out well past
+    // the banner) so it can't create a horizontal scroll into empty space on
+    // mobile. `clip` (not hidden) avoids turning this into a scroll container.
+    <div className="flex flex-col gap-6 overflow-x-clip">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Han">
           <select
