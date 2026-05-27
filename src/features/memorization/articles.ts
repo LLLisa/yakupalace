@@ -26,6 +26,12 @@ export const ARTICLES: ArticleMeta[] = [
     date: '2026-05-26'
   },
   {
+    slug: 'yaku-glossary',
+    title: 'Yaku Glossary',
+    description: 'Every standard yaku, with tile illustrations — the link target for the rest of the site.',
+    date: '2026-05-27',
+  },
+  {
     slug: 'what-is-riichi',
     title: 'What is Riichi Mahjong?',
     description: 'A one-page orientation to the four-player Japanese game.',

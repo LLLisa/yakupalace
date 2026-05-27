@@ -1,0 +1,341 @@
+import { Tiles } from '../components/Tiles'
+import { Yaku } from '../components/Yaku'
+
+# Yaku Glossary
+
+Every standard riichi yaku, in one place. Other articles link directly to the
+entries here, so each name is its own anchor — for example,
+[Pinfu](#pinfu) or [Chinitsu](#chinitsu).
+
+Yaku are grouped by value, written **open–closed**: the first number is the han
+when the hand is *open* (you've called a set), the second when it stays fully
+*closed*. A dash (**—**) in the open slot marks a yaku that requires a closed
+hand. The **0-x** group is the closed-only yaku — worth nothing the moment you
+open your hand. A few yaku are *events* rather than hand shapes — winning on
+the last tile, declaring riichi, robbing a kan — so they have no illustration.
+Yaku are ordered the way they appear in my memory palace. For the memory-palace
+images I attach to these, see [How I Memorized Yaku](/learn/memorize-yaku).
+
+> The illustrations show a representative shape, not the only legal hand. Where
+> a yaku requires concealed tiles (like the concealed triplets below), that
+> constraint is noted in the text, since the tiles alone can't show it.
+
+## 0-x · closed hands only
+
+<Yaku id="menzen-tsumo" name="Menzen Tsumo" en="Closed Self-Draw" jp="門前清自摸和" han="0 / 1">
+
+Self-drawing the winning tile on a fully closed hand. An *event* (the win
+method), not a particular shape.
+
+</Yaku>
+
+<Yaku id="pinfu" name="Pinfu" en="All Sequences" jp="平和" han="0 / 1">
+
+The "no-fu" hand: a pair that scores no fu (not a dragon or relevant wind) and a
+two-sided (ryanmen) wait.
+
+<Tiles hand="234m 567m 234p 678s 99p" />
+
+</Yaku>
+
+<Yaku id="iipeikou" name="Iipeikou" en="Double Sequence" jp="一盃口" han="0 / 1">
+
+Two identical sequences — same numbers, same suit. Closed hands only.
+
+<Tiles hand="234m 234m" />
+
+</Yaku>
+
+<Yaku id="chiitoitsu" name="Chiitoitsu" en="Seven Pairs" jp="七対子" han="0 / 2 · 25 fu">
+
+Seven distinct pairs rather than the usual four sets and a pair. Always closed,
+and always scored at a flat 25 fu.
+
+<Tiles hand="11m 55m 33p 99p 22s 77s 55z" />
+
+</Yaku>
+
+<Yaku id="ryanpeikou" name="Ryanpeikou" en="Two Double Sequences" jp="二盃口" han="0 / 3">
+
+Two Iipeikou in one hand: two separate pairs of identical sequences. Closed only.
+
+<Tiles hand="234m 234m 678p 678p 99s" />
+
+</Yaku>
+
+<Yaku id="renhou" name="Renhou" en="Hand of Man" jp="人和" han="0 / 5">
+
+Winning on a discard before your own first draw, with no calls beforehand.
+Closed only, and scored as a mangan. An *event*.
+
+</Yaku>
+
+<Yaku id="nagashi-mangan" name="Nagashi Mangan" en="Discard Mangan" jp="流し満貫" han="0 / 5">
+
+A special draw outcome: at an exhaustive draw, all of your discards are terminals
+or honors and none were called. Scored as a mangan. Not a hand shape.
+
+</Yaku>
+
+## 1-1 · one han, open or closed
+
+<Yaku id="riichi" name="Riichi" en="Reach" jp="立直" han="— / 1">
+
+Available only to a **closed** hand: declared when you are one tile from winning
+(tenpai) with no called sets. Costs a 1,000-point bet and locks the hand. An
+*event*, so no shape.
+
+</Yaku>
+
+<Yaku id="ippatsu" name="Ippatsu" en="One-Shot" jp="一発" han="— / 1">
+
+Winning within one go-around of declaring riichi, with no calls in between — so
+it can only happen on a **closed** hand. An *event* riding on top of riichi,
+not a shape.
+
+</Yaku>
+
+<Yaku id="rinshan" name="Rinshan Kaihou" en="Dead-Wall Draw" jp="嶺上開花" han="1 / 1">
+
+Winning on the replacement tile drawn after declaring a kan. An *event*.
+
+</Yaku>
+
+<Yaku id="chankan" name="Chankan" en="Robbing a Kan" jp="槍槓" han="1 / 1">
+
+Winning on the tile another player adds to an existing pon to upgrade it to a
+kan. An *event*.
+
+</Yaku>
+
+<Yaku id="haitei" name="Haitei Raoyue" en="Last-Tile Draw" jp="海底摸月" han="1 / 1">
+
+Winning by self-draw on the very last tile of the wall. An *event*.
+
+</Yaku>
+
+<Yaku id="houtei" name="Houtei Raoyui" en="Last-Discard Ron" jp="河底撈魚" han="1 / 1">
+
+Winning by ron on the very last discard of the hand. An *event*.
+
+</Yaku>
+
+<Yaku id="yakuhai" name="Yakuhai/Fanpai" en="Value Tiles" jp="役牌" han="1 / 1 (each)">
+
+A triplet (or kan) of any dragon, your seat wind, or the round wind. Each
+qualifying triplet scores its own han.
+
+<Tiles hand="777z" />
+
+</Yaku>
+
+<Yaku id="tanyao" name="Tanyao" en="All Simples" jp="断么九" han="1 / 1">
+
+Every tile is a 2 through 8, with no terminals (1/9) and no honors.
+
+<Tiles hand="345m 678p 234s 567s 88m" />
+
+</Yaku>
+
+## 1-2 · one open, two closed
+
+<Yaku id="sanshoku" name="Sanshoku Doujun" en="Three-Color Sequence" jp="三色同順" han="1 / 2">
+
+The same sequence in all three suits.
+
+<Tiles hand="234m 234p 234s" />
+
+</Yaku>
+
+<Yaku id="ittsu" name="Ittsu" en="Pure Straight" jp="一気通貫" han="1 / 2">
+
+1-2-3, 4-5-6, and 7-8-9 all in the same suit.
+
+<Tiles hand="123s 456s 789s" />
+
+</Yaku>
+
+<Yaku id="chanta" name="Chanta" en="Outside Hand" jp="混全帯么九" han="1 / 2">
+
+Every set *and* the pair contains a terminal or an honor. Sequences must run
+1-2-3 or 7-8-9; honor sets are allowed.
+
+<Tiles hand="123m 789p 123s 555z 99m" />
+
+</Yaku>
+
+## 2-2 · two han, open or closed
+
+<Yaku id="toitoi" name="Toitoi" en="All Triplets" jp="対々和" han="2 / 2">
+
+Every set a triplet or kan, plus a pair — no sequences at all.
+
+<Tiles hand="333m 555p 888s 111z 99m" />
+
+</Yaku>
+
+<Yaku id="sanshoku-doukou" name="Sanshoku Doukou" en="Three-Color Triplets" jp="三色同刻" han="2 / 2">
+
+The same triplet in all three suits.
+
+<Tiles hand="333m 333p 333s" />
+
+</Yaku>
+
+<Yaku id="sanankou" name="Sanankou" en="Three Concealed Triplets" jp="三暗刻" han="2 / 2">
+
+Three of the four triplets are formed concealed (without calling); the last set
+and the pair are unrestricted.
+
+<Tiles hand="333m 555p 888s" />
+
+</Yaku>
+
+<Yaku id="sankantsu" name="Sankantsu" en="Three Kans" jp="三槓子" han="2 / 2">
+
+Three of your sets are declared as kans.
+
+<Tiles hand="1111m 5555p 9999s" />
+
+</Yaku>
+
+<Yaku id="honroutou" name="Honroutou" en="All Terminals & Honors" jp="混老頭" han="2 / 2">
+
+No simples at all — only terminals (1/9) and honors, so it's built from triplets
+or seven pairs, never sequences.
+
+<Tiles hand="111m 999m 555z 111z 99p" />
+
+</Yaku>
+
+<Yaku id="shousangen" name="Shousangen" en="Little Three Dragons" jp="小三元" han="2 / 2">
+
+Triplets of two dragons plus a pair of the third.
+
+<Tiles hand="555z 666z 77z" />
+
+</Yaku>
+
+## 2-3 · two open, three closed
+
+<Yaku id="honitsu" name="Honitsu" en="Half Flush" jp="混一色" han="2 / 3">
+
+A single suit combined with honor tiles, and nothing else.
+
+<Tiles hand="123m 456m 789m 555z 11z" />
+
+</Yaku>
+
+<Yaku id="junchan" name="Junchan" en="Pure Outside Hand" jp="純全帯么九" han="2 / 3">
+
+Like Chanta, but stricter: a *terminal* in every set and the pair, with no
+honors allowed.
+
+<Tiles hand="123m 789p 123s 789s 99m" />
+
+</Yaku>
+
+## 5-6 · five open, six closed
+
+<Yaku id="chinitsu" name="Chinitsu" en="Full Flush" jp="清一色" han="5 / 6">
+
+The entire hand is a single suit, with no honors.
+
+<Tiles hand="123m 456m 789m 678m 22m" />
+
+</Yaku>
+
+## Yakuman · limit hands
+
+Each scores a fixed yakuman regardless of fu, and several can combine for
+multiple yakuman, depending on ruleset.
+
+<Yaku id="suuankou" name="Suuankou" en="Four Concealed Triplets" jp="四暗刻" han="Yakuman">
+
+All four triplets are formed concealed (without calling), plus a pair.
+
+<Tiles hand="111m 333p 555s 777z 99m" />
+
+</Yaku>
+
+<Yaku id="kokushi" name="Kokushi Musou" en="Thirteen Orphans" jp="国士無双" han="Yakuman">
+
+One of every terminal and honor, with a second copy of any one of them as the
+pair.
+
+<Tiles hand="19m 19p 19s 1234567z" />
+
+</Yaku>
+
+<Yaku id="daisangen" name="Daisangen" en="Big Three Dragons" jp="大三元" han="Yakuman">
+
+Triplets of all three dragons.
+
+<Tiles hand="555z 666z 777z" />
+
+</Yaku>
+
+<Yaku id="suushii" name="Shousuushii / Daisuushii" en="Four Winds" jp="小四喜・大四喜" han="Yakuman">
+
+<span id="shousuushii" /><span id="daisuushii" />
+The four-winds yakuman. **Shousuushii** (little four winds) is triplets of three
+winds plus a pair of the fourth. **Daisuushii** (big four winds) is triplets of
+all four winds, and is often scored as a double yakuman.
+
+<Tiles hand="111z 222z 333z 44z" />
+<Tiles hand="111z 222z 333z 444z" />
+
+</Yaku>
+
+<Yaku id="ryuuiisou" name="Ryuuiisou" en="Imperial Jade" jp="緑一色" han="Yakuman">
+
+Built only from the green tiles — 2, 3, 4, 6, 8 of sou and the green dragon.
+
+<Tiles hand="234s 234s 666s 888s 66z" />
+
+</Yaku>
+
+<Yaku id="tsuuiisou" name="Tsuuiisou" en="All Honors" jp="字一色" han="Yakuman">
+
+Every tile is a wind or a dragon.
+
+<Tiles hand="111z 333z 555z 777z 22z" />
+
+</Yaku>
+
+<Yaku id="chinroutou" name="Chinroutou" en="All Terminals" jp="清老頭" han="Yakuman">
+
+Every tile is a 1 or a 9.
+
+<Tiles hand="111m 999m 111p 999s 99p" />
+
+</Yaku>
+
+<Yaku id="tenhou" name="Tenhou" en="Heavenly Hand" jp="天和" han="Yakuman">
+
+The dealer wins on their opening draw. An *event*.
+
+</Yaku>
+
+<Yaku id="chiihou" name="Chiihou" en="Earthly Hand" jp="地和" han="Yakuman">
+
+A non-dealer wins on their first draw, with no calls beforehand. An *event*.
+
+</Yaku>
+
+<Yaku id="chuuren" name="Chuuren Poutou" en="Nine Gates" jp="九蓮宝燈" han="Yakuman">
+
+A closed full flush in the shape 1112345678999 plus one extra tile of the same
+suit.
+
+<Tiles hand="1112345678999m" />
+
+</Yaku>
+
+<Yaku id="suukantsu" name="Suukantsu" en="Four Kans" jp="四槓子" han="Yakuman">
+
+All four of your sets are kans.
+
+<Tiles hand="1111m 5555p 9999s 7777z" />
+
+</Yaku>

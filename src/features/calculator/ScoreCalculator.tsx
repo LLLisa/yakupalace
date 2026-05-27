@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   FU_OPTIONS,
   HAN_OPTIONS,
@@ -12,6 +12,16 @@ export function ScoreCalculator() {
 
   // Derived on every render — scores update live as the selects change.
   const score = scoreHand(han, fu)
+
+  // Fire the yakuman tile burst once each time the hand crosses into yakuman.
+  // burstId both gates rendering and keys the burst so it remounts (replays).
+  const [burstId, setBurstId] = useState(0)
+  const wasYakuman = useRef(false)
+  useEffect(() => {
+    const isYakuman = score.limit === 'yakuman'
+    if (isYakuman && !wasYakuman.current) setBurstId((n) => n + 1)
+    wasYakuman.current = isYakuman
+  }, [score.limit])
 
   return (
     <div className="flex flex-col gap-6">
@@ -56,10 +66,19 @@ export function ScoreCalculator() {
 
       {/* At 5+ han fu is ignored; the limit name shows beneath the inputs. */}
       {score.limit && (
-        <div className="-my-3 flex items-center gap-3 text-ink">
+        <div className="relative -my-3 flex items-center gap-3 text-ink">
           <span className="h-px flex-1 bg-header" />
-          <span className="text-2xl font-bold">{LIMIT_LABELS[score.limit]}</span>
+          <span
+            className={`text-2xl font-bold ${
+              score.limit === 'yakuman' ? 'rainbow-text' : ''
+            }`}
+          >
+            {LIMIT_LABELS[score.limit]}
+          </span>
           <span className="h-px flex-1 bg-header" />
+          {score.limit === 'yakuman' && burstId > 0 && (
+            <YakumanBurst key={burstId} seed={burstId} />
+          )}
         </div>
       )}
 
@@ -82,6 +101,85 @@ export function ScoreCalculator() {
           />
         </ResultCard>
       </div>
+    </div>
+  )
+}
+
+// A colorful spread of tiles (reds, greens, honors, and a mix of suits) for
+// the yakuman burst, drawn from the vendored set in /public/tiles.
+const BURST_TILES = [
+  '1man', '9man', '5man', '2man', '8man',
+  '1pin', '9pin', '6pin', '3pin', '7pin',
+  '1sou', '9sou', '5sou', '3sou', '8sou',
+  'chun', 'hatsu', 'haku', 'tan', 'nan',
+]
+
+interface BurstTile {
+  name: string
+  tx: number
+  ty: number
+  rot: number
+  delay: number
+  duration: number
+}
+
+/** Small deterministic PRNG so the burst can be built purely during render
+ *  (Math.random() isn't allowed there) while still varying per burst. */
+function mulberry32(seed: number) {
+  let a = seed >>> 0
+  return () => {
+    a = (a + 0x6d2b79f5) | 0
+    let t = Math.imul(a ^ (a >>> 15), 1 | a)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+function buildBurstTiles(seed: number): BurstTile[] {
+  const rng = mulberry32(seed)
+  return Array.from({ length: 28 }, () => {
+    // Fan mostly upward; the keyframe then drops them under "gravity".
+    const angle = -Math.PI / 2 + (rng() - 0.5) * Math.PI * 1.4
+    const dist = 110 + rng() * 170
+    return {
+      name: BURST_TILES[Math.floor(rng() * BURST_TILES.length)],
+      tx: Math.cos(angle) * dist,
+      ty: Math.sin(angle) * dist,
+      rot: (rng() * 2 - 1) * 600,
+      delay: rng() * 450,
+      duration: 2200 + rng() * 1000,
+    }
+  })
+}
+
+/**
+ * One-shot tile shower for a yakuman. Mounted (and re-keyed via `seed`) by the
+ * parent so it replays on each entry into yakuman; particles fade out and the
+ * component unmounts when the hand leaves yakuman. The tiles are hidden under
+ * prefers-reduced-motion (see index.css).
+ */
+function YakumanBurst({ seed }: { seed: number }) {
+  const tiles = useMemo(() => buildBurstTiles(seed), [seed])
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
+      {tiles.map((t, i) => (
+        <img
+          key={i}
+          src={`/tiles/${t.name}.svg`}
+          alt=""
+          className="yakuman-tile"
+          style={
+            {
+              '--tx': `${t.tx}px`,
+              '--ty': `${t.ty}px`,
+              '--rot': `${t.rot}deg`,
+              animationDelay: `${t.delay}ms`,
+              animationDuration: `${t.duration}ms`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
     </div>
   )
 }
