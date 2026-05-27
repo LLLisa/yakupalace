@@ -56,3 +56,7 @@ The article then appears on the index and gets its own route automatically.
 
 Favicon: [Mahjong icons created by Kason Koo — Flaticon](https://www.flaticon.com/free-icons/mahjong)
 (recolored to the site's teal and traced to SVG).
+
+Tile artwork: [tile-art by WarL0ckNet](https://github.com/WarL0ckNet/tile-art),
+licensed **GPL-3.0**. Vendored into `public/tiles/` — see
+[`public/tiles/CREDITS.md`](public/tiles/CREDITS.md) for details.
