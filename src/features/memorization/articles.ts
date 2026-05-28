@@ -22,7 +22,13 @@ export const ARTICLES: ArticleMeta[] = [
   {
     slug: 'memorize-yaku',
     title: 'How I Memorized Yaku',
-    description: 'My Yaku Memory Palace',
+    description: 'My Yaku Memory Palace / Dream Home',
+    date: '2026-05-26'
+  },
+  {
+    slug: 'memorize-fu',
+    title: 'How I Memorized Fu',
+    description: 'Cooking Points Up in the Kitchen',
     date: '2026-05-26'
   },
   {
@@ -30,18 +36,6 @@ export const ARTICLES: ArticleMeta[] = [
     title: 'Yaku Glossary',
     description: 'Every standard yaku, with tile illustrations — the link target for the rest of the site.',
     date: '2026-05-27',
-  },
-  {
-    slug: 'what-is-riichi',
-    title: 'What is Riichi Mahjong?',
-    description: 'A one-page orientation to the four-player Japanese game.',
-    date: '2026-05-25',
-  },
-  {
-    slug: 'adding-articles',
-    title: 'How to Add an Article',
-    description: 'A template showing the MDX authoring workflow for this site.',
-    date: '2026-05-25',
   },
   {
     slug: 'table-builder',
