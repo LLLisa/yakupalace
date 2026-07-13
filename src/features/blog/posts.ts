@@ -14,6 +14,12 @@ export interface PostMeta {
  */
 export const POSTS: PostMeta[] = [
   {
+    slug: 'about-me',
+    title: 'About Me',
+    description: 'More than an anime pfp',
+    date: '2026-07-13',
+  },
+  {
     slug: 'yaku-archetypes',
     title: 'Yaku Archetypes',
     description: 'Another way to think about yaku',
