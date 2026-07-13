@@ -19,6 +19,12 @@ export const POSTS: PostMeta[] = [
     description: 'Another way to think about yaku',
     date: '2026-05-27',
   },
+  {
+    slug: 'suji-secret',
+    title: 'The Suji Secret',
+    description: "It's not actually that complicated",
+    date: '2026-07-13',
+  },
 ]
 
 // Eagerly map every MDX file to a lazy-loaded component, keyed by slug.
