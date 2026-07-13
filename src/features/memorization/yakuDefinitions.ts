@@ -1,0 +1,48 @@
+/**
+ * Very brief, one-line definitions keyed by the yaku's glossary anchor id (the
+ * `#id` in /learn/yaku-glossary#id). Used for the hover tooltips on glossary
+ * links — see GlossaryLink.tsx, wired up through MdxLink. Keep the ids in sync
+ * with the <Yaku id="…"> anchors in content/yaku-glossary.mdx.
+ */
+export const YAKU_DEFINITIONS: Record<string, string> = {
+  'menzen-tsumo': 'Self-draw the winning tile on a fully closed hand.',
+  pinfu: 'All sequences, a valueless pair, and a two-sided wait — the no-fu hand.',
+  iipeikou: 'Two identical sequences in one suit; closed hands only.',
+  chiitoitsu: 'Seven distinct pairs instead of four sets and a pair.',
+  ryanpeikou: 'Two separate pairs of identical sequences; closed only.',
+  renhou: 'Win on a discard before your first draw; scored as a mangan.',
+  'nagashi-mangan': 'At an exhaustive draw, all your discards are terminals or honors.',
+  riichi: 'Declare tenpai on a closed hand for a 1,000-point bet.',
+  ippatsu: 'Win within one turn of declaring riichi, with no calls between.',
+  rinshan: 'Win on the replacement tile drawn after calling a kan.',
+  chankan: "Win by robbing the tile that upgrades an opponent's pon to a kan.",
+  haitei: 'Win by self-draw on the very last tile of the wall.',
+  houtei: 'Win by ron on the very last discard of the hand.',
+  yakuhai: 'A triplet of any dragon, your seat wind, or the round wind.',
+  tanyao: 'All simples — only 2s through 8s, no terminals or honors.',
+  sanshoku: 'The same sequence in all three suits.',
+  ittsu: '1-2-3, 4-5-6, and 7-8-9 all in the same suit.',
+  chanta: 'A terminal or honor in every set and the pair.',
+  toitoi: 'Every set a triplet or kan, plus a pair — no sequences.',
+  'sanshoku-doukou': 'The same triplet in all three suits.',
+  sanankou: 'Three of your triplets formed concealed.',
+  sankantsu: 'Three of your sets declared as kans.',
+  honroutou: 'Only terminals and honors — no simples at all.',
+  shousangen: 'Triplets of two dragons plus a pair of the third.',
+  honitsu: 'A single suit combined with honor tiles, nothing else.',
+  junchan: 'A terminal in every set and the pair, with no honors.',
+  chinitsu: 'The entire hand in a single suit, with no honors.',
+  suuankou: 'Four concealed triplets plus a pair — yakuman.',
+  kokushi: 'One of every terminal and honor, with one of them paired — yakuman.',
+  daisangen: 'Triplets of all three dragons — yakuman.',
+  suushii: 'The four-winds yakuman.',
+  shousuushii: 'Triplets of three winds plus a pair of the fourth — yakuman.',
+  daisuushii: 'Triplets of all four winds — often a double yakuman.',
+  ryuuiisou: 'Built only from green sou tiles and the green dragon — yakuman.',
+  tsuuiisou: 'Every tile is a wind or a dragon — yakuman.',
+  chinroutou: 'Every tile is a 1 or a 9 — yakuman.',
+  tenhou: 'Dealer wins on their opening draw — yakuman.',
+  chiihou: 'Non-dealer wins on their first draw — yakuman.',
+  chuuren: 'A closed nine-gates full flush — yakuman.',
+  suukantsu: 'All four of your sets are kans — yakuman.',
+}
