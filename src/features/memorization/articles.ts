@@ -34,15 +34,15 @@ export const ARTICLES: ArticleMeta[] = [
   {
     slug: 'yaku-glossary',
     title: 'Yaku Glossary',
-    description: 'Every standard yaku, with tile illustrations — the link target for the rest of the site.',
+    description: 'Every standard yaku, with tile illustrations',
     date: '2026-05-27',
   },
-  {
-    slug: 'table-builder',
-    title: 'Table builder',
-    description: 'Fill in your own values, then export the table as a PDF.',
-    date: '2026-05-26',
-  },
+  // {
+  //   slug: 'table-builder',
+  //   title: 'Table builder',
+  //   description: 'Fill in your own values, then export the table as a PDF.',
+  //   date: '2026-05-26',
+  // },
 ]
 
 // Eagerly map every MDX file to a lazy-loaded component, keyed by slug.
