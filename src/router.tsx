@@ -6,6 +6,8 @@ import { HomePage } from './pages/HomePage'
 import { CalculatorPage } from './pages/CalculatorPage'
 import { ArticlesPage } from './pages/ArticlesPage'
 import { ArticlePage } from './pages/ArticlePage'
+import { BlogPage } from './pages/BlogPage'
+import { BlogPostPage } from './pages/BlogPostPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
 export const router = createBrowserRouter([
@@ -17,6 +19,8 @@ export const router = createBrowserRouter([
       { path: 'calculator', element: <CalculatorPage /> },
       { path: 'learn', element: <ArticlesPage /> },
       { path: 'learn/:slug', element: <ArticlePage /> },
+      { path: 'blog', element: <BlogPage /> },
+      { path: 'blog/:slug', element: <BlogPostPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

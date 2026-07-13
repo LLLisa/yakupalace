@@ -2,14 +2,19 @@ import { Link } from 'react-router-dom'
 
 const cards = [
   {
-    to: '/calculator',
-    title: 'Scoring calculator',
-    body: 'Work out the points for a finished hand.',
+    to: '/blog',
+    title: 'Blog',
+    body: 'News and notes from the Palace.',
   },
   {
     to: '/learn',
     title: 'Learn Riichi Scoring',
     body: 'Short reads about the game and these tools.',
+  },
+  {
+    to: '/calculator',
+    title: 'Scoring calculator',
+    body: 'Work out the points for a finished hand.',
   },
 ]
 
