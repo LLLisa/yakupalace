@@ -3,8 +3,7 @@ import react from '@vitejs/plugin-react'
 import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
 import tailwindcss from '@tailwindcss/vite'
-import { ARTICLES } from './src/features/memorization/articles.data'
-import { POSTS } from './src/features/blog/posts.data'
+import { getRoutes } from './src/features/seo/routePaths'
 
 // Public origin the site is served from. Override with SITE_URL (e.g. a custom
 // domain) — otherwise it falls back to the Heroku app URL. No trailing slash.
@@ -12,38 +11,20 @@ const SITE_URL = (
   process.env.SITE_URL ?? 'https://yakupalace-b4e6516422db.herokuapp.com'
 ).replace(/\/$/, '')
 
-interface SitemapEntry {
-  path: string
-  priority: string
-  /** ISO date string, if the route has a known publish/update date. */
-  lastmod?: string
-}
-
-// Emit sitemap.xml and robots.txt into the build output. Driven by the same
-// route registries the app uses, so new articles/posts appear automatically.
+// Emit sitemap.xml and robots.txt into the build output. Uses the same route
+// list (getRoutes) as the prerender script, so the two never drift.
 function seoFiles(): Plugin {
+  let isSsr = false
   return {
     name: 'seo-files',
     apply: 'build',
+    configResolved(config) {
+      isSsr = !!config.build.ssr
+    },
     generateBundle() {
-      const entries: SitemapEntry[] = [
-        { path: '/', priority: '1.0' },
-        { path: '/learn', priority: '0.9' },
-        { path: '/blog', priority: '0.9' },
-        { path: '/calculator', priority: '0.8' },
-        ...ARTICLES.map((a): SitemapEntry => ({
-          path: `/learn/${a.slug}`,
-          priority: '0.7',
-          lastmod: a.date,
-        })),
-        ...POSTS.map((p): SitemapEntry => ({
-          path: `/blog/${p.slug}`,
-          priority: '0.7',
-          lastmod: p.date,
-        })),
-      ]
-
-      const urls = entries
+      // Only emit during the client build; the SSR build's output is discarded.
+      if (isSsr) return
+      const urls = getRoutes()
         .map((e) => {
           const lastmod = e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''
           return `  <url><loc>${SITE_URL}${e.path}</loc>${lastmod}<priority>${e.priority}</priority></url>`

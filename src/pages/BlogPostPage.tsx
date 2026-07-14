@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { Link, useParams } from 'react-router-dom'
 import { getPostComponent, getPostMeta } from '../features/blog/posts'
@@ -36,12 +35,10 @@ export function BlogPostPage() {
       )}
       <div className="prose-article max-w-prose">
         <MDXProvider components={mdxComponents}>
-          <Suspense fallback={<p className="text-faint">Loading…</p>}>
-            {/* Post is a stable module-level lazy() component looked up by
-                slug (see posts.ts), not created during render. */}
-            {/* eslint-disable-next-line react-hooks/static-components */}
-            <Post />
-          </Suspense>
+          {/* Post is a stable module-level component looked up by slug (see
+              posts.ts), not created during render. */}
+          {/* eslint-disable-next-line react-hooks/static-components */}
+          <Post />
         </MDXProvider>
       </div>
     </article>

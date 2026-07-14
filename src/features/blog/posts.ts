@@ -1,4 +1,4 @@
-import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
+import type { ComponentType } from 'react'
 import { POSTS } from './posts.data'
 
 // Metadata lives in a pure-data module (no React/Vite-glob imports) so the
@@ -7,15 +7,17 @@ import { POSTS } from './posts.data'
 export { POSTS }
 export type { PostMeta } from './posts.data'
 
-// Eagerly map every MDX file to a lazy-loaded component, keyed by slug.
-const modules = import.meta.glob('./content/*.mdx')
+// Eagerly import every post MDX so it renders synchronously — the build-time
+// prerender's renderToString does not await Suspense, and eager modules on both
+// server and client keep the hydrated markup identical.
+const modules = import.meta.glob<{ default: ComponentType }>('./content/*.mdx', {
+  eager: true,
+})
 
-const componentBySlug: Record<string, LazyExoticComponent<ComponentType>> = {}
+const componentBySlug: Record<string, ComponentType> = {}
 for (const path in modules) {
   const slug = path.replace('./content/', '').replace('.mdx', '')
-  componentBySlug[slug] = lazy(
-    modules[path] as () => Promise<{ default: ComponentType }>,
-  )
+  componentBySlug[slug] = modules[path].default
 }
 
 export function getPostComponent(slug: string) {

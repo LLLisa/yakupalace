@@ -1,4 +1,4 @@
-import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
+import type { ComponentType } from 'react'
 import { ARTICLES } from './articles.data'
 
 // Metadata lives in a pure-data module (no React/Vite-glob imports) so the
@@ -7,15 +7,20 @@ import { ARTICLES } from './articles.data'
 export { ARTICLES }
 export type { ArticleMeta } from './articles.data'
 
-// Eagerly map every MDX file to a lazy-loaded component, keyed by slug.
-const modules = import.meta.glob('./content/*.mdx')
+// Eagerly import every article MDX so it renders synchronously. The build-time
+// prerender's renderToString does not await Suspense, and eager modules on both
+// server and client keep the hydrated markup identical. table-builder.mdx is
+// excluded: it pulls in @react-pdf/renderer (browser-only) and isn't a live
+// route.
+const modules = import.meta.glob<{ default: ComponentType }>(
+  ['./content/*.mdx', '!./content/table-builder.mdx'],
+  { eager: true },
+)
 
-const componentBySlug: Record<string, LazyExoticComponent<ComponentType>> = {}
+const componentBySlug: Record<string, ComponentType> = {}
 for (const path in modules) {
   const slug = path.replace('./content/', '').replace('.mdx', '')
-  componentBySlug[slug] = lazy(
-    modules[path] as () => Promise<{ default: ComponentType }>,
-  )
+  componentBySlug[slug] = modules[path].default
 }
 
 export function getArticleComponent(slug: string) {

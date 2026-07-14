@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import {
@@ -74,13 +74,11 @@ export function ArticlePage() {
       )}
       <div className="prose-article max-w-prose">
         <MDXProvider components={mdxComponents}>
-          <Suspense fallback={<p className="text-faint">Loading…</p>}>
-            {/* Article is a stable module-level lazy() component looked up by
-                slug (see articles.ts), not created during render. */}
-            {/* eslint-disable-next-line react-hooks/static-components */}
-            <Article />
-            <ScrollToHash hash={hash} />
-          </Suspense>
+          {/* Article is a stable module-level component looked up by slug (see
+              articles.ts), not created during render. */}
+          {/* eslint-disable-next-line react-hooks/static-components */}
+          <Article />
+          <ScrollToHash hash={hash} />
         </MDXProvider>
       </div>
     </article>

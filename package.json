@@ -8,8 +8,12 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "start": "serve -s dist -l tcp://0.0.0.0:${PORT:-3000}",
+    "build": "tsc -b && npm run build:client && npm run build:server && npm run prerender",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "prerender": "node scripts/prerender.mjs",
+    "build:spa": "tsc -b && vite build",
+    "start": "serve dist -l tcp://0.0.0.0:${PORT:-3000}",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint ."
