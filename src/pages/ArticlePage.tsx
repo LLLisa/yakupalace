@@ -6,6 +6,7 @@ import {
   getArticleMeta,
 } from '../features/memorization/articles'
 import { MdxLink } from '../components/MdxLink'
+import { Breadcrumbs } from '../components/Breadcrumbs'
 
 // Element overrides injected into every MDX article. Defined at module scope so
 // the object identity is stable across renders.
@@ -64,9 +65,13 @@ export function ArticlePage() {
 
   return (
     <article className="space-y-6">
-      <Link to="/learn" className="text-sm text-brand underline">
-        ← Learn Riichi Scoring
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: 'Home', to: '/' },
+          { label: 'Learn', to: '/learn' },
+          { label: meta?.title ?? 'Article' },
+        ]}
+      />
       {meta && (
         <time className="block text-xs text-faint" dateTime={meta.date}>
           {meta.date}

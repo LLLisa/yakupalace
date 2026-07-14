@@ -65,7 +65,7 @@ const serializeJsonLd = (node: unknown) =>
   JSON.stringify(node).replace(/</g, '\\u003c')
 
 function buildHead(path: string, siteUrl: string): string {
-  const { title, description } = getPageMeta(path)
+  const { title, description, type, datePublished } = getPageMeta(path)
   const canonical = `${siteUrl}${path}`
   const ogImage = `${siteUrl}/og-default.png`
   const t = escapeAttr(title)
@@ -75,20 +75,40 @@ function buildHead(path: string, siteUrl: string): string {
     (node) => `<script type="application/ld+json">${serializeJsonLd(node)}</script>`,
   )
 
+  // Article-specific OG tags for content pages.
+  const articleTags =
+    type === 'article'
+      ? [
+          `<meta property="article:author" content="Lisa" />`,
+          ...(datePublished
+            ? [`<meta property="article:published_time" content="${datePublished}" />`]
+            : []),
+        ]
+      : []
+
+  // RSS discovery link on the blog index and posts.
+  const rssLink = path.startsWith('/blog')
+    ? [
+        `<link rel="alternate" type="application/rss+xml" title="Yaku Palace Blog" href="${siteUrl}/rss.xml" />`,
+      ]
+    : []
+
   return [
     `<title>${t}</title>`,
     `<meta name="description" content="${d}" />`,
     `<link rel="canonical" href="${escapeAttr(canonical)}" />`,
-    `<meta property="og:type" content="website" />`,
+    `<meta property="og:type" content="${type}" />`,
     `<meta property="og:site_name" content="Yaku Palace" />`,
     `<meta property="og:title" content="${t}" />`,
     `<meta property="og:description" content="${d}" />`,
     `<meta property="og:url" content="${escapeAttr(canonical)}" />`,
     `<meta property="og:image" content="${escapeAttr(ogImage)}" />`,
+    ...articleTags,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${t}" />`,
     `<meta name="twitter:description" content="${d}" />`,
     `<meta name="twitter:image" content="${escapeAttr(ogImage)}" />`,
+    ...rssLink,
     ...jsonLd,
   ].join('\n    ')
 }

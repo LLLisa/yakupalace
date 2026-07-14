@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { Link, useParams } from 'react-router-dom'
 import { getPostComponent, getPostMeta } from '../features/blog/posts'
 import { MdxLink } from '../components/MdxLink'
+import { Breadcrumbs } from '../components/Breadcrumbs'
 
 // Element overrides injected into every MDX post. Defined at module scope so
 // the object identity is stable across renders.
@@ -25,9 +26,13 @@ export function BlogPostPage() {
 
   return (
     <article className="space-y-6">
-      <Link to="/blog" className="text-sm text-brand underline">
-        ← Blog
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: 'Home', to: '/' },
+          { label: 'Blog', to: '/blog' },
+          { label: meta?.title ?? 'Post' },
+        ]}
+      />
       {meta && (
         <time className="block text-xs text-faint" dateTime={meta.date}>
           {meta.date}

@@ -4,12 +4,52 @@ import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
 import tailwindcss from '@tailwindcss/vite'
 import { getRoutes } from './src/features/seo/routePaths'
+import { POSTS } from './src/features/blog/posts.data'
 
 // Public origin the site is served from. Override with SITE_URL (e.g. a custom
 // domain) — otherwise it falls back to the Heroku app URL. No trailing slash.
 const SITE_URL = (
   process.env.SITE_URL ?? 'https://yakupalace-b4e6516422db.herokuapp.com'
 ).replace(/\/$/, '')
+
+const escapeXml = (s: string) =>
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+
+// RSS 2.0 feed for the blog, newest first.
+function rssFeed(): string {
+  const items = [...POSTS]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .map((p) => {
+      const url = `${SITE_URL}/blog/${p.slug}`
+      const description = p.seoDescription ?? p.description
+      return (
+        '    <item>\n' +
+        `      <title>${escapeXml(p.title)}</title>\n` +
+        `      <link>${url}</link>\n` +
+        `      <guid isPermaLink="true">${url}</guid>\n` +
+        `      <pubDate>${new Date(p.date).toUTCString()}</pubDate>\n` +
+        `      <description>${escapeXml(description)}</description>\n` +
+        '    </item>'
+      )
+    })
+    .join('\n')
+
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
+    '  <channel>\n' +
+    '    <title>Yaku Palace Blog</title>\n' +
+    `    <link>${SITE_URL}/blog</link>\n` +
+    '    <description>Notes and theory on riichi mahjong strategy.</description>\n' +
+    `    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n` +
+    items +
+    '\n  </channel>\n</rss>\n'
+  )
+}
 
 // Emit sitemap.xml and robots.txt into the build output. Uses the same route
 // list (getRoutes) as the prerender script, so the two never drift.
@@ -41,6 +81,7 @@ function seoFiles(): Plugin {
 
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap })
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: robots })
+      this.emitFile({ type: 'asset', fileName: 'rss.xml', source: rssFeed() })
     },
   }
 }
