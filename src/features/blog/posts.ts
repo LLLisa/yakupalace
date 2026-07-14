@@ -1,47 +1,23 @@
-import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
+import type { ComponentType } from 'react'
+import { POSTS } from './posts.data'
 
-export interface PostMeta {
-  slug: string
-  title: string
-  description: string
-  /** ISO date string. */
-  date: string
-}
+// Metadata lives in a pure-data module (no React/Vite-glob imports) so the
+// build-time sitemap generator can consume it too. Re-exported here so existing
+// importers keep working unchanged.
+export { POSTS }
+export type { PostMeta } from './posts.data'
 
-/**
- * Blog post metadata. Keep this in sync with the .mdx files in `content/`.
- * The slug must match the filename (without extension).
- */
-export const POSTS: PostMeta[] = [
-  {
-    slug: 'about-me',
-    title: 'About Me',
-    description: 'More than an anime pfp',
-    date: '2026-07-13',
-  },
-  {
-    slug: 'yaku-archetypes',
-    title: 'Yaku Archetypes',
-    description: 'Another way to think about yaku',
-    date: '2026-05-27',
-  },
-  {
-    slug: 'suji-secret',
-    title: 'The Suji Secret',
-    description: "It's not actually that complicated",
-    date: '2026-07-13',
-  },
-]
+// Eagerly import every post MDX so it renders synchronously — the build-time
+// prerender's renderToString does not await Suspense, and eager modules on both
+// server and client keep the hydrated markup identical.
+const modules = import.meta.glob<{ default: ComponentType }>('./content/*.mdx', {
+  eager: true,
+})
 
-// Eagerly map every MDX file to a lazy-loaded component, keyed by slug.
-const modules = import.meta.glob('./content/*.mdx')
-
-const componentBySlug: Record<string, LazyExoticComponent<ComponentType>> = {}
+const componentBySlug: Record<string, ComponentType> = {}
 for (const path in modules) {
   const slug = path.replace('./content/', '').replace('.mdx', '')
-  componentBySlug[slug] = lazy(
-    modules[path] as () => Promise<{ default: ComponentType }>,
-  )
+  componentBySlug[slug] = modules[path].default
 }
 
 export function getPostComponent(slug: string) {
